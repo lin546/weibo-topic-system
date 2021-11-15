@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:dubbo="http://dubbo.apache.org/schema/dubbo"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans        http://www.springframework.org/schema/beans/spring-beans-4.3.xsd        http://dubbo.apache.org/schema/dubbo        http://dubbo.apache.org/schema/dubbo/dubbo.xsd">
+
+    <!-- 提供方应用信息，用于计算依赖关系 -->
+    <dubbo:application name="weiboservice"  />
+
+    <!-- 使用multicast广播注册中心暴露服务地址 -->
+    <dubbo:registry address="zookeeper://82.156.199.145:2181" />
+
+    <!-- 用dubbo协议在20880端口暴露服务 -->
+    <dubbo:protocol name="dubbo" port="${dubbo.port}" />
+
+    <!-- 声明需要暴露的服务接口 -->
+    <dubbo:service interface="cn.lin.wbtopic.wbservice.facade.DemoService" ref="demoService" />
+    <!-- 和本地bean一样实现服务 -->
+    <bean id="demoService" class="cn.lin.wbtopic.service.impl.DemoServiceImpl" />
+
+    <!-- 声明需要暴露的服务接口 -->
+    <dubbo:service interface="cn.lin.wbtopic.wbservice.facade.WeiboService" ref="weiboService" />
+    <!-- 和本地bean一样实现服务 -->
+    <bean id="weiboService" class="cn.lin.wbtopic.service.impl.WeiboServiceImpl" />
+
+    <!-- 声明需要暴露的服务接口 -->
+    <dubbo:service interface="cn.lin.wbtopic.wbservice.facade.TopicService" ref="topicService" />
+    <!-- 和本地bean一样实现服务 -->
+    <bean id="topicService" class="cn.lin.wbtopic.service.impl.TopicServiceImpl" />
+</beans>

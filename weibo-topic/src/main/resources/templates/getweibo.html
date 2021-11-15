@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Hugo 0.88.1">
+    <title>Checkout example · Bootstrap v4.6</title>
+
+    <link rel="canonical" href="https://getbootstrap.com/docs/4.6/examples/checkout/">
+
+
+
+    <!-- Bootstrap core CSS -->
+    <link href="/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <!-- Custom styles for this template -->
+    <link href="/css/form-validation.css" rel="stylesheet" type="text/css">
+
+    <style>
+        .bd-placeholder-img {
+            font-size: 1.125rem;
+            text-anchor: middle;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+
+        @media (min-width: 768px) {
+            .bd-placeholder-img-lg {
+                font-size: 3.5rem;
+            }
+        }
+    </style>
+
+</head>
+<body class="bg-light">
+
+<div class="container">
+    <div class="py-5 text-center">
+<!--        <img class="d-block mx-auto mb-4" src="/img/weibo.png" alt="" width="72" height="72">-->
+        <h2>微博详情</h2>
+    </div>
+
+    <div class="row">
+        <div class="col-md-1 order-md-1" > </div>
+        <div class="col-md-10 order-md-1">
+
+            <ul class="list-group">
+                <li class="list-group-item  list-group-item-primary"> <label for="content">微博内容</label></li>
+                <li class="list-group-item">
+                    <span id="content" class="control-label" th:text="${data.content}"></span>
+                </li>
+                <hr>
+                <li class="list-group-item list-group-item-info"> <label for="content">微博图片</label></li>
+                <li class="list-group-item">
+                    <img class="img-responsive" th:src="${data.imgUrl}"></img>
+                </li>
+
+            </ul>
+        </div>
+        <div class="col-md-1 order-md-1" > </div>
+    </div>
+
+</div>
+
+<script src="/js/form-validation.js"></script>
+
+<script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
+
+</body>
+</html>

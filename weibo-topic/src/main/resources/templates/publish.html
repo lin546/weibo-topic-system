@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Hugo 0.88.1">
+    <title>Checkout example · Bootstrap v4.6</title>
+
+    <link rel="canonical" href="https://getbootstrap.com/docs/4.6/examples/checkout/">
+
+    
+
+    <!-- Bootstrap core CSS -->
+    <link href="/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <!-- Custom styles for this template -->
+    <link href="/css/form-validation.css" rel="stylesheet" type="text/css">
+
+    <style>
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+      }
+
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+    </style>
+
+  </head>
+  <body class="bg-light">
+    
+<div class="container">
+  <div class="py-5 text-center">
+    <img class="d-block mx-auto mb-4" src="/img/weibo.png" alt="" width="72" height="72">
+    <h2>Publish Page</h2>
+  </div>
+
+  <div class="row">
+    <div class="col-md-2 order-md-1" > </div>
+    <div class="col-md-10 order-md-1">
+      <form class="needs-validation" novalidate>
+        <div class="row">
+          <div class="col-md-8 mb-3">
+            <label for="content">微博内容</label>
+            <input type="text" class="form-control" id="content" placeholder="请输入微博内容" value="" required>
+            <div class="invalid-feedback">
+              content is required.
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-8 mb-3">
+            <label for="imgUrl">微博图片地址</label>
+            <input type="text" class="form-control" id="imgUrl" placeholder="请输入微博图片" value="" required>
+            <div class="invalid-feedback">
+              image is required.
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-8 mb-3">
+            <label for="imgUrl">关联话题</label>
+            <input type="text" class="form-control" id="topicTitle" placeholder="请输入关联话题" value="" required>
+            <div class="invalid-feedback">
+              image is required.
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-2 col-sm-3 mb-3">
+            <button  type="button" class="btn btn-primary btn-md" id="publish">Submit</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+
+</div>
+
+<script src="/js/form-validation.js"></script>
+
+<script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
+
+<script type="text/javascript">
+  jQuery(document).ready(function () {
+    $("#publish").click(function (){
+      const content = $("#content").val();
+      const imgUrl = $("#imgUrl").val();
+      const topicTitle = $("#topicTitle").val();
+
+      if (content=="" || imgUrl==""){
+        alert("输入缺少必要参数");
+        return false;
+      }
+
+      $.ajax({
+        url: "/weibo/publish",
+        type:"post",
+        contentType: "application/x-www-form-urlencoded",
+        data: {
+          "content": content,
+          "imgUrl": imgUrl,
+          "topicTitle":topicTitle
+        },error:function (data) {
+          alert("发布失败，原因为:"+data.responseText);
+        },success:function (data) {
+          console.log(1);
+          if(data.success){
+            alert("success");
+          }else{
+            alert(data.data);
+          }
+        }
+      })
+    })
+  })
+
+</script>
+  </body>
+</html>

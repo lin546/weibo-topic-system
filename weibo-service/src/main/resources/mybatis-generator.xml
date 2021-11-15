@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+<!-- 配置生成器 -->
+<generatorConfiguration>
+    <!--执行generator插件生成文件的命令： call mvn mybatis-generator:generate -e -->
+    <!-- 引入配置文件 -->
+    <properties resource="application.properties"/>
+
+    <!-- 一个数据库一个context -->
+    <!--defaultModelType="flat" 大数据字段，不分表 -->
+    <context id="weiboservice" targetRuntime="MyBatis3" defaultModelType="flat">
+
+        <!-- 生成的Java文件的编码 -->
+        <property name="javaFileEncoding" value="utf-8" />
+
+        <!-- 格式化java代码 -->
+        <property name="javaFormatter" value="org.mybatis.generator.api.dom.DefaultJavaFormatter"/>
+        <!-- 格式化XML代码 -->
+        <property name="xmlFormatter" value="org.mybatis.generator.api.dom.DefaultXmlFormatter"/>
+
+        <!-- 注释 -->
+        <commentGenerator >
+            <property name="suppressAllComments" value="true"/><!-- 是否取消注释 -->
+            <property name="suppressDate" value="true" /> <!-- 是否生成注释代时间戳-->
+        </commentGenerator>
+
+        <!-- jdbc连接 -->
+        <jdbcConnection driverClass="${spring.datasource.driver-class-name}" connectionURL="${spring.datasource.url}"
+                        userId="${spring.datasource.username}" password="${spring.datasource.password}" >
+        </jdbcConnection>
+
+        <!-- 类型转换 -->
+        <javaTypeResolver>
+            <!-- 是否使用bigDecimal， false可自动转化以下类型（Long, Integer, Short, etc.） -->
+            <property name="forceBigDecimals" value="false"/>
+        </javaTypeResolver>
+
+        <!-- 生成实体类地址 -->
+        <javaModelGenerator targetPackage="cn.lin.wbtopic.model" targetProject="src/main/java" >
+            <property name="enableSubPackages" value="true"/>
+            <property name="trimStrings" value="true"/>
+        </javaModelGenerator>
+
+        <!-- 生成mapxml文件 -->
+        <sqlMapGenerator targetPackage="mapping" targetProject="src/main/resources/mapper" >
+            <property name="enableSubPackages" value="true" />
+        </sqlMapGenerator>
+        <!-- 生成mapxml对应client，也就是接口dao -->
+        <javaClientGenerator targetPackage="cn.lin.wbtopic.mapper" targetProject= "src/main/java" type="XMLMAPPER" >
+            <property name="enableSubPackages" value="true" />
+        </javaClientGenerator>
+        <!-- table可以有多个,每个数据库中的表都可以写一个table，tableName表示要匹配的数据库表,也可以在tableName属性中通过使用%通配符来匹配所有数据库表,只有匹配的表才会自动生成文件 -->
+        <table tableName="feed" domainObjectName="Feed" enableCountByExample="false" enableUpdateByExample="false"
+                    enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
+            <generatedKey column="id" sqlStatement="Mysql" identity="true" />
+        </table>
+    </context>
+</generatorConfiguration>
