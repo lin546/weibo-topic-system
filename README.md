@@ -54,6 +54,7 @@ mvn clean pcakage
 
 
 + 导入数据库文件：数据库文件 `docs/weibo.sql`
++ 启动RockeMQ,执行`mqadmin updateTopic -n localhost:9876 -c DefaultCluster -t TopicTrade`
 + 运行 **weibo-service.jar**: `java -jar weibo-wervice.jar`
 + 运行 **weibo-topic.jar**: `java -jar weibo-topic.jar`
 + 访问：localhost:6066/index
